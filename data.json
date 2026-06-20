@@ -348,5 +348,35 @@
       "Mattress"
     ],
     "id": "CIX-2026-010"
+  },
+  {
+    "name": "Performance Line Toppers - Online PVT",
+    "project": "Scale Performance Line",
+    "ptag": "P2",
+    "teams": [
+      "Category Management"
+    ],
+    "requestor": "Remi Duperyat",
+    "vendor": "UserTesting",
+    "markets": [
+      "FR",
+      "DE"
+    ],
+    "participants": "300",
+    "fieldworkStart": "2026-06",
+    "fieldworkEnd": "2026-06",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Delivered",
+    "deliveryDate": "2026-06-15",
+    "cost": "1500",
+    "poc": [
+      "Paula"
+    ],
+    "category": [
+      "Topper"
+    ],
+    "id": "CIX-2026-011"
   }
 ]
