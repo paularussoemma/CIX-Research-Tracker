@@ -208,5 +208,47 @@
       "Mattress"
     ],
     "id": "CIX-2026-006"
+  },
+  {
+    "name": "Quality Perception - Wave 2",
+    "project": "Increasing Brand Preference",
+    "ptag": "P2",
+    "teams": [
+      "B&CX",
+      "Brand"
+    ],
+    "requestor": "Ingrid H-Fray; Amanda Allegrini",
+    "vendor": "GWI",
+    "markets": [
+      "PT",
+      "ES",
+      "CH",
+      "BE",
+      "AT",
+      "IT",
+      "IR",
+      "IN",
+      "NL",
+      "PH",
+      "HK",
+      "KO",
+      "CA",
+      "CO",
+      "CL"
+    ],
+    "participants": "4550",
+    "fieldworkStart": "2026-06",
+    "fieldworkEnd": "2026-06",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Analysis",
+    "deliveryDate": "2026-06-25",
+    "cost": "77000",
+    "poc": [
+      "Joana"
+    ],
+    "category": [],
+    "id": "CIX-2026-007"
   }
 ]
