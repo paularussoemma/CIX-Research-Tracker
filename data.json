@@ -102,5 +102,33 @@
       "Mattress"
     ],
     "id": "CIX-2026-003"
+  },
+  {
+    "name": "Consumer Trust Drivers & Barriers - Wave 1",
+    "project": "Increase Insights Effectiveness",
+    "ptag": "P2",
+    "teams": [
+      "Ecomm",
+      "B&CX"
+    ],
+    "requestor": "Paula Russo",
+    "vendor": "UserTesting",
+    "markets": [],
+    "participants": "1350",
+    "fieldworkStart": "2026-03",
+    "fieldworkEnd": "2026-04",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Delivered",
+    "deliveryDate": "2026-04-01",
+    "cost": "6750",
+    "poc": [
+      "Paula"
+    ],
+    "category": [
+      "Mattress"
+    ],
+    "id": "CIX-2026-004"
   }
 ]
