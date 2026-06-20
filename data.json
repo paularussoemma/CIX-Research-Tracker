@@ -64,5 +64,43 @@
     ],
     "category": [],
     "id": "CIX-2026-002"
+  },
+  {
+    "name": "Consumer Needs & JTBD - Wave 1",
+    "project": "Increase Insights Effectiveness",
+    "ptag": "P2",
+    "teams": [
+      "Ecomm",
+      "B&CX"
+    ],
+    "requestor": "Paula Russo",
+    "vendor": "UserTesting",
+    "markets": [
+      "ES",
+      "FR",
+      "UK",
+      "DE",
+      "AT",
+      "IN",
+      "NL",
+      "AU",
+      "MX"
+    ],
+    "participants": "1350",
+    "fieldworkStart": "2026-03",
+    "fieldworkEnd": "2026-04",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Delivered",
+    "deliveryDate": "2026-04-01",
+    "cost": "6750",
+    "poc": [
+      "Paula"
+    ],
+    "category": [
+      "Mattress"
+    ],
+    "id": "CIX-2026-003"
   }
 ]
