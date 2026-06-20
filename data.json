@@ -442,5 +442,39 @@
     ],
     "category": [],
     "id": "CIX-2026-013"
+  },
+  {
+    "name": "Bundles Discovery - Shopping Journey",
+    "project": "Webshop Optimisation",
+    "ptag": "",
+    "teams": [
+      "Tech",
+      "Ecomm",
+      "Markets",
+      "CRO"
+    ],
+    "requestor": "Maria Botero",
+    "vendor": "Conjointly",
+    "markets": [
+      "ES",
+      "FR",
+      "DE",
+      "BR"
+    ],
+    "participants": "480",
+    "fieldworkStart": "2026-06",
+    "fieldworkEnd": "2026-06",
+    "researchType": [
+      "Conjointly"
+    ],
+    "status": "Fieldwork",
+    "deliveryDate": "2026-06-30",
+    "cost": "2526",
+    "poc": [
+      "Egon",
+      "Team Swap"
+    ],
+    "category": [],
+    "id": "CIX-2026-014"
   }
 ]
