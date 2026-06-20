@@ -565,5 +565,35 @@
       "Pillow"
     ],
     "id": "CIX-2026-017"
+  },
+  {
+    "name": "Original Line Toppers - Online PVT",
+    "project": "Original Reimagined",
+    "ptag": "P1",
+    "teams": [
+      "Category Management"
+    ],
+    "requestor": "Remi Duperyat",
+    "vendor": "UserTesting",
+    "markets": [
+      "FR",
+      "DE"
+    ],
+    "participants": "300",
+    "fieldworkStart": "2026-06",
+    "fieldworkEnd": "2026-06",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Delivered",
+    "deliveryDate": "2026-06-15",
+    "cost": "1500",
+    "poc": [
+      "Paula"
+    ],
+    "category": [
+      "Topper"
+    ],
+    "id": "CIX-2026-018"
   }
 ]
