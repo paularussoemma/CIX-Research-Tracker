@@ -408,5 +408,39 @@
     ],
     "category": [],
     "id": "CIX-2026-012"
+  },
+  {
+    "name": "Bundles Discovery",
+    "project": "Webshop Optimisation",
+    "ptag": "",
+    "teams": [
+      "Tech",
+      "Ecomm",
+      "Markets",
+      "CRO"
+    ],
+    "requestor": "Maria Botero",
+    "vendor": "UserTesting",
+    "markets": [
+      "ES",
+      "FR",
+      "DE",
+      "BR"
+    ],
+    "participants": "13",
+    "fieldworkStart": "2026-05",
+    "fieldworkEnd": "2026-06",
+    "researchType": [
+      "Interview"
+    ],
+    "status": "Analysis",
+    "deliveryDate": "2026-06-26",
+    "cost": "975",
+    "poc": [
+      "Egon",
+      "Team Swap"
+    ],
+    "category": [],
+    "id": "CIX-2026-013"
   }
 ]
