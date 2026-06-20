@@ -506,5 +506,31 @@
     ],
     "category": [],
     "id": "CIX-2026-015"
+  },
+  {
+    "name": "Franchisee Survey",
+    "project": "Scale Franchise",
+    "ptag": "P1",
+    "teams": [
+      "Tech",
+      "Offline"
+    ],
+    "requestor": "Antonia Papke",
+    "vendor": "SAGO",
+    "markets": [],
+    "participants": "",
+    "fieldworkStart": "2026-06",
+    "fieldworkEnd": "2026-06",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Fieldwork",
+    "deliveryDate": "",
+    "cost": "",
+    "poc": [
+      "Gabriela"
+    ],
+    "category": [],
+    "id": "CIX-2026-016"
   }
 ]
