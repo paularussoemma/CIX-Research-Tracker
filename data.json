@@ -250,5 +250,36 @@
     ],
     "category": [],
     "id": "CIX-2026-007"
+  },
+  {
+    "name": "Box Spring Bed Consumers",
+    "project": "Grow BSB Category",
+    "ptag": "P2",
+    "teams": [
+      "Marketing",
+      "Markets",
+      "Category Management"
+    ],
+    "requestor": "Michael Benzing",
+    "vendor": "UserTesting",
+    "markets": [
+      "DE"
+    ],
+    "participants": "200",
+    "fieldworkStart": "2026-03",
+    "fieldworkEnd": "2026-03",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Delivered",
+    "deliveryDate": "2026-04-01",
+    "cost": "1000",
+    "poc": [
+      "Paula"
+    ],
+    "category": [
+      "Bed"
+    ],
+    "id": "CIX-2026-008"
   }
 ]
