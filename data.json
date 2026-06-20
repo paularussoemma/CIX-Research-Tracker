@@ -476,5 +476,35 @@
     ],
     "category": [],
     "id": "CIX-2026-014"
+  },
+  {
+    "name": "Franchise Discovery - Store Visits",
+    "project": "Scale Franchise",
+    "ptag": "P1",
+    "teams": [
+      "Tech",
+      "Offline"
+    ],
+    "requestor": "Antonia Papke",
+    "vendor": "",
+    "markets": [
+      "PT",
+      "ES"
+    ],
+    "participants": "6",
+    "fieldworkStart": "2026-04",
+    "fieldworkEnd": "2026-05",
+    "researchType": [
+      "Interview",
+      "Field study"
+    ],
+    "status": "Analysis",
+    "deliveryDate": "2026-06-30",
+    "cost": "150",
+    "poc": [
+      "Gabriela"
+    ],
+    "category": [],
+    "id": "CIX-2026-015"
   }
 ]
