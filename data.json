@@ -378,5 +378,35 @@
       "Topper"
     ],
     "id": "CIX-2026-011"
+  },
+  {
+    "name": "Bundles Discovery - Webshop Foundations",
+    "project": "Webshop Optimisation",
+    "ptag": "",
+    "teams": [
+      "Tech",
+      "Ecomm"
+    ],
+    "requestor": "Claudia Delgado",
+    "vendor": "UserTesting",
+    "markets": [
+      "FR",
+      "UK",
+      "DE"
+    ],
+    "participants": "22",
+    "fieldworkStart": "2026-03",
+    "fieldworkEnd": "2026-05",
+    "researchType": [
+      "Unmoderated test"
+    ],
+    "status": "Requested",
+    "deliveryDate": "",
+    "cost": "550",
+    "poc": [
+      "Egon"
+    ],
+    "category": [],
+    "id": "CIX-2026-012"
   }
 ]
