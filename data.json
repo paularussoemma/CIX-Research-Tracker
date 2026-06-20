@@ -168,5 +168,45 @@
       "Mattress"
     ],
     "id": "CIX-2026-005"
+  },
+  {
+    "name": "Original Line - Online PVTs",
+    "project": "Original Reimagined",
+    "ptag": "P1",
+    "teams": [
+      "B&CX",
+      "Category Management",
+      "R&D",
+      "Engineering"
+    ],
+    "requestor": "Manuel Muller",
+    "vendor": "SAGO, IMR",
+    "markets": [
+      "PT",
+      "ES",
+      "FR",
+      "UK",
+      "DE",
+      "JP",
+      "AU",
+      "MX"
+    ],
+    "participants": "1600",
+    "fieldworkStart": "2026-04",
+    "fieldworkEnd": "2026-04",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Delivered",
+    "deliveryDate": "2026-04-24",
+    "cost": "25180",
+    "poc": [
+      "Paula",
+      "Sofija"
+    ],
+    "category": [
+      "Mattress"
+    ],
+    "id": "CIX-2026-006"
   }
 ]
