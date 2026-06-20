@@ -532,5 +532,38 @@
     ],
     "category": [],
     "id": "CIX-2026-016"
+  },
+  {
+    "name": "Performance Line Pillow - Design Decision",
+    "project": "Scale Performance Line",
+    "ptag": "P2",
+    "teams": [
+      "Category Management",
+      "R&D",
+      "Engineering",
+      "Creative"
+    ],
+    "requestor": "Remi Duperyat",
+    "vendor": "UserTesting",
+    "markets": [
+      "FR",
+      "DE"
+    ],
+    "participants": "300",
+    "fieldworkStart": "2026-02",
+    "fieldworkEnd": "2026-02",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Delivered",
+    "deliveryDate": "2026-02-27",
+    "cost": "1500",
+    "poc": [
+      "Paula"
+    ],
+    "category": [
+      "Pillow"
+    ],
+    "id": "CIX-2026-017"
   }
 ]
