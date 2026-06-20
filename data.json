@@ -31,5 +31,38 @@
     ],
     "category": [],
     "id": "CIX-2026-001"
+  },
+  {
+    "name": "Webshop Quality Study - Wave 1",
+    "project": "Increasing Brand Preference",
+    "ptag": "P2",
+    "teams": [
+      "Tech",
+      "Ecomm",
+      "B&CX"
+    ],
+    "requestor": "Ingrid H-Fray; Steffen H-Fray",
+    "vendor": "UserTesting",
+    "markets": [
+      "FR",
+      "UK",
+      "DE",
+      "AU"
+    ],
+    "participants": "412",
+    "fieldworkStart": "2026-03",
+    "fieldworkEnd": "2026-04",
+    "researchType": [
+      "Interview",
+      "Conjointly"
+    ],
+    "status": "Delivered",
+    "deliveryDate": "2026-04-01",
+    "cost": "2900",
+    "poc": [
+      "Egon"
+    ],
+    "category": [],
+    "id": "CIX-2026-002"
   }
 ]
