@@ -130,5 +130,43 @@
       "Mattress"
     ],
     "id": "CIX-2026-004"
+  },
+  {
+    "name": "Original Line - In-Person PVTs",
+    "project": "Original Reimagined",
+    "ptag": "P1",
+    "teams": [
+      "B&CX",
+      "Category Management",
+      "R&D",
+      "Engineering"
+    ],
+    "requestor": "Manuel Muller",
+    "vendor": "SAGO, IMR",
+    "markets": [
+      "PT",
+      "ES",
+      "FR",
+      "UK",
+      "DE",
+      "AU",
+      "MX"
+    ],
+    "participants": "224",
+    "fieldworkStart": "2026-04",
+    "fieldworkEnd": "2026-04",
+    "researchType": [
+      "In-person test"
+    ],
+    "status": "Delivered",
+    "deliveryDate": "2026-04-24",
+    "cost": "117778",
+    "poc": [
+      "Sofija"
+    ],
+    "category": [
+      "Mattress"
+    ],
+    "id": "CIX-2026-005"
   }
 ]
