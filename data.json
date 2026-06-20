@@ -281,5 +281,36 @@
       "Bed"
     ],
     "id": "CIX-2026-008"
+  },
+  {
+    "name": "Performance Line - User Journey Discovery",
+    "project": "Scale Performance Line",
+    "ptag": "P2",
+    "teams": [
+      "Tech",
+      "Ecomm",
+      "CRO"
+    ],
+    "requestor": "Duarte Costa",
+    "vendor": "UserTesting",
+    "markets": [
+      "FR",
+      "UK",
+      "DE"
+    ],
+    "participants": "65",
+    "fieldworkStart": "2026-04",
+    "fieldworkEnd": "2026-05",
+    "researchType": [
+      "Unmoderated test"
+    ],
+    "status": "Analysis",
+    "deliveryDate": "2026-05-31",
+    "cost": "1625",
+    "poc": [
+      "Egon"
+    ],
+    "category": [],
+    "id": "CIX-2026-009"
   }
 ]
