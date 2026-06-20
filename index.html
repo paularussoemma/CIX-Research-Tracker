@@ -1,0 +1,253 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#FAF4E8;--bg-card:#F0E3C8;--bg-card2:#F7EFD8;--bg-white:#fff;--dark:#3D3730;--orange:#FF8900;--muted:#8A7E74;--border:#D8C8A4;--fs:Inter,'Trebuchet MS',Arial,sans-serif;--fser:Georgia,serif;}
+html,body{width:100%;background:var(--bg);color:var(--dark);font-family:var(--fs);font-size:12px}
+.app{display:flex;flex-direction:column;min-height:100vh}
+.topbar{background:var(--bg);border-bottom:1px solid var(--border);padding:18px 28px 14px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.topbar-left .eyebrow{font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:3px}
+.topbar-left h1{font-family:var(--fser);font-weight:normal;font-size:24px;color:var(--dark);line-height:1.2}
+.kpi-bar{display:grid;grid-template-columns:repeat(6,1fr);background:var(--bg-card);border-bottom:1px solid var(--border)}
+.kpi{padding:13px 20px;border-right:1px solid var(--border)}.kpi:last-child{border-right:none}
+.kpi-lbl{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;font-weight:600}
+.kpi-val{font-family:var(--fser);font-size:26px;font-weight:normal;color:var(--dark);line-height:1}
+.kpi-val.ora{color:var(--orange)}
+.kpi.hl{background:var(--orange)}.kpi.hl .kpi-lbl{color:rgba(255,255,255,.8)}.kpi.hl .kpi-val{color:#fff}
+.chart-strip{background:var(--bg-white);border-bottom:1px solid var(--border);padding:14px 28px 12px}
+.chart-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.chart-hd-l{font-size:11px;font-weight:600;color:var(--dark)}.chart-hd-r{font-size:10px;color:var(--muted)}
+.tab-strip{background:var(--bg);border-bottom:1px solid var(--border);padding:0 28px;display:flex;gap:2px}
+.tab{padding:11px 18px;border-bottom:2px solid transparent;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--fs);transition:color .15s,border-color .15s}
+.tab:hover{color:var(--dark)}.tab.active{color:var(--orange);border-bottom-color:var(--orange)}
+.toolbar{background:var(--bg);padding:10px 28px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.toolbar select{border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-family:var(--fs);font-size:11px;background:var(--bg-white);color:var(--dark);height:30px}
+.toolbar label{font-size:11px;color:var(--muted)}
+.add-btn{margin-left:auto;background:var(--orange);color:#fff;border:none;border-radius:9999px;padding:7px 18px;font-family:var(--fs);font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap}
+.add-btn:hover{background:#e07800}
+.content{padding:20px 28px 40px;flex:1}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--border);border-radius:10px;background:var(--bg-white)}
+table{width:100%;border-collapse:collapse;table-layout:fixed}
+thead tr{background:var(--dark)}
+thead th{color:#fff;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:9px 8px;text-align:left;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+tbody tr{border-bottom:1px solid var(--border)}
+tbody tr:last-child{border-bottom:none}
+tbody tr:hover{background:var(--bg-card2)}
+tbody td{padding:7px 8px;vertical-align:middle;font-size:11px;overflow:hidden}
+.id-cell{font-size:9px;color:var(--muted);white-space:nowrap}
+.badge{display:inline-block;padding:2px 7px;border-radius:9999px;font-size:9px;font-weight:600;white-space:nowrap}
+.s-req{background:#eee;color:#777}.s-sco{background:#FFF3DC;color:#8A5E00}.s-fie{background:#FFF9DC;color:#7A6A00}
+.s-ana{background:#DCF0FF;color:#1A5A8A}.s-del{background:#DCFAE8;color:#1A6A3A}.s-hol{background:#FFE8DC;color:#8A3A1A}.s-can{background:#FFE0E0;color:#8A1A1A}
+.pills{display:flex;flex-wrap:wrap;gap:2px}
+.pill{display:inline-block;padding:1px 5px;border-radius:9999px;font-size:9px;background:var(--bg-card);color:var(--dark);border:1px solid var(--border);white-space:nowrap}
+.empty{text-align:center;padding:48px;color:var(--muted);font-size:13px}
+.act-btn{background:none;border:1px solid var(--border);cursor:pointer;font-size:10px;padding:3px 8px;border-radius:6px;font-family:var(--fs);color:var(--dark);white-space:nowrap}
+.act-btn:hover{border-color:var(--orange);color:var(--orange)}
+.act-btn.del:hover{border-color:#c0392b;color:#c0392b}
+.act-wrap{display:flex;gap:4px}
+.modal-bg{display:none;position:fixed;inset:0;background:rgba(61,55,48,.5);z-index:200;align-items:flex-start;justify-content:center;padding-top:32px;overflow-y:auto}
+.modal-bg.open{display:flex}
+.modal{background:var(--bg-white);border-radius:14px;border:1px solid var(--border);padding:28px 28px 24px;width:740px;max-width:96vw;margin-bottom:40px}
+.modal h2{font-family:var(--fser);font-weight:normal;font-size:20px;color:var(--dark);margin-bottom:20px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.fg{display:flex;flex-direction:column;gap:4px}.fg.full{grid-column:1/-1}
+.flbl{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.finp{border:1px solid var(--border);border-radius:7px;padding:7px 10px;font-family:var(--fs);font-size:12px;background:var(--bg);color:var(--dark);width:100%}
+.finp:focus{outline:2px solid var(--orange);border-color:var(--orange)}
+.macts{display:flex;gap:8px;justify-content:flex-end;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+.btn-c{background:none;border:1px solid var(--border);border-radius:9999px;padding:8px 20px;font-family:var(--fs);font-size:12px;cursor:pointer;color:var(--dark)}
+.btn-s{background:var(--orange);color:#fff;border:none;border-radius:9999px;padding:8px 24px;font-family:var(--fs);font-size:12px;font-weight:700;cursor:pointer}
+.msw{border:1px solid var(--border);border-radius:7px;background:var(--bg);padding:5px 8px;min-height:36px;cursor:pointer;position:relative}
+.msw:focus-within{outline:2px solid var(--orange)}
+.msdrop{display:none;position:absolute;top:100%;left:0;right:0;background:var(--bg-white);border:1px solid var(--border);border-radius:8px;z-index:300;max-height:200px;overflow-y:auto;margin-top:2px;box-shadow:0 4px 12px rgba(61,55,48,.12)}
+.msdrop.open{display:block}
+.msopt{padding:6px 10px;cursor:pointer;font-size:11px;display:flex;align-items:center;gap:7px}
+.msopt:hover{background:var(--bg-card2)}.msopt input{accent-color:var(--orange)}
+.mspills{display:flex;flex-wrap:wrap;gap:3px;margin-bottom:2px}
+.msp{background:var(--bg-card);border:1px solid var(--border);border-radius:9999px;font-size:10px;padding:2px 8px;color:var(--dark);display:flex;align-items:center;gap:3px}
+.msp .rm{cursor:pointer;color:var(--muted);font-size:11px;line-height:1}.msp .rm:hover{color:#c0392b}
+.msall{border-bottom:1px solid var(--border);background:var(--bg-card2);font-weight:600}
+.rollup-wrap{background:var(--bg-white);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.rtbl{width:100%;border-collapse:collapse}
+.rtbl th{background:var(--dark);color:#fff;font-size:9px;letter-spacing:.1em;text-transform:uppercase;padding:9px 16px;text-align:left}
+.rtbl td{padding:9px 16px;border-bottom:1px solid var(--border);font-size:12px}
+.rtbl tr:last-child td{border-bottom:none}.rtbl tr:nth-child(even) td{background:var(--bg-card2)}
+.pie-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pcrd{background:var(--bg-white);border:1px solid var(--border);border-radius:10px;padding:16px}
+.pclbl{font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;font-weight:600}
+.pleg{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.pleg span{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--dark)}
+.q-badge{display:inline-block;padding:2px 7px;border-radius:5px;font-size:9px;font-weight:700;background:var(--bg-card);color:var(--dark);border:1px solid var(--border);white-space:nowrap}
+</style>
+<div class="app">
+  <div class="topbar">
+    <div class="topbar-left">
+      <div class="eyebrow">CIX — Consumer Insights &amp; Experience</div>
+      <h1>Research Tracker &amp; Cost Center</h1>
+    </div>
+    <div style="font-size:10px;color:var(--muted)" id="storageLbl">Loading…</div>
+  </div>
+  <div class="kpi-bar">
+    <div class="kpi"><div class="kpi-lbl">Total studies</div><div class="kpi-val" id="k1">—</div></div>
+    <div class="kpi"><div class="kpi-lbl">Active now</div><div class="kpi-val ora" id="k2">—</div></div>
+    <div class="kpi"><div class="kpi-lbl">Delivered</div><div class="kpi-val" id="k3">—</div></div>
+    <div class="kpi"><div class="kpi-lbl">Launched this year</div><div class="kpi-val" id="k4">—</div></div>
+    <div class="kpi"><div class="kpi-lbl">Total cost</div><div class="kpi-val ora" id="k5">—</div></div>
+    <div class="kpi hl"><div class="kpi-lbl">Total participants</div><div class="kpi-val" id="k6">—</div></div>
+  </div>
+  <div class="chart-strip">
+    <div class="chart-hd">
+      <span class="chart-hd-l">Studies launched per month — 2026</span>
+      <span class="chart-hd-r" id="trendLbl"></span>
+    </div>
+    <div style="position:relative;height:110px"><canvas id="trendC"></canvas></div>
+  </div>
+  <div class="tab-strip" id="tabStrip">
+    <button class="tab active" data-v="all">All research</button>
+    <button class="tab" data-v="monthly">Monthly</button>
+    <button class="tab" data-v="quarterly">Quarterly</button>
+    <button class="tab" data-v="semestral">Semestral</button>
+    <button class="tab" data-v="annual">Annual</button>
+    <button class="tab" data-v="analytics">Analytics</button>
+  </div>
+  <div class="toolbar">
+    <label>Status</label>
+    <select id="fStatus">
+      <option value="all">All</option>
+      <option>Requested</option><option>Scoping</option><option>Fieldwork</option>
+      <option>Analysis</option><option>Delivered</option><option>On Hold</option><option>Cancelled</option>
+    </select>
+    <button class="add-btn" id="addBtn">+ Add research</button>
+  </div>
+  <div class="content" id="content"></div>
+</div>
+<div class="modal-bg" id="modalBg">
+  <div class="modal">
+    <h2 id="mTitle">Add research study</h2>
+    <div class="fgrid" id="mForm"></div>
+    <div class="macts">
+      <button class="btn-c" id="mCancel">Cancel</button>
+      <button class="btn-s" id="mSave">Save study</button>
+    </div>
+  </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script>
+const SK='cix-v5-permanent';
+const MARKETS=['PT','ES','FR','CH','BE','UK','DE','AT','IT','IR','IN','NL','PH','JP','HK','KO','AU','CA','CO','MX','BR','CL'];
+const TEAMS=['Tech','Ecomm','Ops','Marketing','Markets','B&CX','Category Management','R&D','Engineering','CE','Brand','Creative','Paid Social','Paid Search','Influencer Marketing','CRM','CRO','Offline'];
+const POCS=['Paula','Joana','Egon','Sofija','Michelle','Gabriela','Team Swap'];
+const STATUSES=['Requested','Scoping','Fieldwork','Analysis','Delivered','On Hold','Cancelled'];
+const PTAGS=['','P1','P2','P3'];
+const CATS=['Mattress','Pillow','Topper','Bed','Bed Linen'];
+const RTYPES=['Survey','Interview','Unmoderated test','In-person test','Field study','Card sorting','Usability testing','Heuristics','Audit','Desk research','Pricing','Conjointly','MaxDiff'];
+const PROJECTS=['Increasing Brand Preference','From Satisfaction to Advocacy','Webshop Optimisation','Product Launch','Consumer Intelligence','Other'];
+const PAL=['#FF8900','#FFA236','#FFCDA2','#D8C8A4','#8A7E74','#3D3730','#2E2F3C','#B0A090','#F0E3C8','#FFF9F3','#c0392b','#27ae60','#185FA5'];
+const ML=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+let studies=[],view='all',editId=null,trendChart=null;
+
+async function load(){
+  try{
+    const r=await window.storage.get(SK,true);
+    if(r&&r.value)studies=JSON.parse(r.value);
+    document.getElementById('storageLbl').textContent=`Shared · ${studies.length} studies loaded`;
+  }catch(e){document.getElementById('storageLbl').textContent='Shared · ready';}
+  render();
+}
+async function save(){
+  try{await window.storage.set(SK,JSON.stringify(studies),true);}catch(e){}
+  document.getElementById('storageLbl').textContent=`Shared · ${studies.length} studies`;
+}
+function genId(){const y=new Date().getFullYear(),u=studies.map(s=>s.id);let n=1;while(u.includes(`CIX-${y}-${String(n).padStart(3,'0')}`))n++;return `CIX-${y}-${String(n).padStart(3,'0')}`;}
+function fc(v){return '€'+(parseFloat(v)||0).toLocaleString('en-IE',{minimumFractionDigits:0,maximumFractionDigits:0});}
+function fn(v){return Math.round(v||0).toLocaleString('en-IE');}
+function lm(s){return s.fieldworkStart||null;}
+function ph(arr){if(!arr||!arr.length)return '<span style="color:var(--muted)">—</span>';return '<div class="pills">'+arr.map(v=>`<span class="pill">${v}</span>`).join('')+'</div>';}
+function esc(v){return(v||'').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+function sb(st){const m={'Requested':'req','Scoping':'sco','Fieldwork':'fie','Analysis':'ana','Delivered':'del','On Hold':'hol','Cancelled':'can'};return `<span class="badge s-${m[st]||'req'}">${st||'—'}</span>`;}
+function toQ(ym){if(!ym)return null;return `Q${Math.ceil(parseInt(ym.split('-')[1])/3)}`;}
+function fwH(s){const qs=toQ(s.fieldworkStart),qe=toQ(s.fieldworkEnd);if(!qs&&!qe)return '<span style="color:var(--muted)">—</span>';if(!qe||qs===qe)return `<span class="q-badge">${qs}</span>`;return `<span class="q-badge">${qs}</span><span style="color:var(--muted);font-size:9px;margin:0 2px">→</span><span class="q-badge">${qe}</span>`;}
+
+function renderKPIs(){
+  const t=studies.length,ac=studies.filter(s=>['Scoping','Fieldwork','Analysis'].includes(s.status)).length;
+  const del=studies.filter(s=>s.status==='Delivered').length;
+  const la=studies.filter(s=>{const m=lm(s);return m&&m.startsWith('2026');}).length;
+  const cost=studies.reduce((a,s)=>a+(parseFloat(s.cost)||0),0);
+  const parts=studies.reduce((a,s)=>a+(parseInt(s.participants)||0),0);
+  document.getElementById('k1').textContent=t;document.getElementById('k2').textContent=ac;
+  document.getElementById('k3').textContent=del;document.getElementById('k4').textContent=la;
+  document.getElementById('k5').textContent=fc(cost);document.getElementById('k6').textContent=fn(parts);
+}
+function renderTrend(){
+  const months=ML.map((label,i)=>({key:`2026-${String(i+1).padStart(2,'0')}`,label,count:0}));
+  studies.forEach(s=>{const m=lm(s);if(m){const k=m.substring(0,7),f=months.find(x=>x.key===k);if(f)f.count++;}});
+  const total=months.reduce((a,m)=>a+m.count,0),h1=months.slice(0,6).reduce((a,m)=>a+m.count,0),h2=months.slice(6).reduce((a,m)=>a+m.count,0);
+  document.getElementById('trendLbl').textContent=`2026 total: ${total} · H1: ${h1} · H2: ${h2}`;
+  const ck=`2026-${String(new Date().getMonth()+1).padStart(2,'0')}`;
+  const ctx=document.getElementById('trendC').getContext('2d');
+  if(trendChart)trendChart.destroy();
+  trendChart=new Chart(ctx,{type:'bar',data:{labels:months.map(m=>m.label),datasets:[{data:months.map(m=>m.count),backgroundColor:months.map(m=>m.key===ck?'#FF8900':m.count>0?'#FFA236':'#D8C8A4'),borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw} studies`}}},scales:{x:{grid:{display:false},ticks:{font:{size:10},color:'#8A7E74',autoSkip:false}},y:{grid:{color:'#F0E3C8'},ticks:{stepSize:1,font:{size:10},color:'#8A7E74'},min:0,beginAtZero:true}}}});
+}
+const HEADS=['ID','Research name','Project','P','Teams','Requestor','Vendor','Markets','Participants','Fieldwork','Type','Status','Delivery','Cost (€)','POC','Category',''];
+const CW=[74,124,112,40,100,90,86,112,66,80,100,84,80,64,100,88,70];
+function renderAll(){
+  const f=document.getElementById('fStatus').value;let data=[...studies];if(f!=='all')data=data.filter(s=>s.status===f);
+  if(!data.length){document.getElementById('content').innerHTML='<div class="tbl-wrap"><div class="empty">No studies yet. Click <strong>+ Add research</strong> to get started.</div></div>';return;}
+  let h=`<div class="tbl-wrap"><table><colgroup>${CW.map(w=>`<col style="width:${w}px">`).join('')}</colgroup><thead><tr>${HEADS.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>`;
+  data.forEach(s=>{h+=`<tr><td class="id-cell">${s.id}</td><td>${esc(s.name||'')}</td><td>${esc(s.project||'')}</td><td>${s.ptag?`<span style="font-size:10px;font-weight:700;color:var(--orange)">${s.ptag}</span>`:''}</td><td>${ph(s.teams)}</td><td>${esc(s.requestor||'')}</td><td>${esc(s.vendor||'')}</td><td>${ph(s.markets)}</td><td style="text-align:right">${s.participants?fn(s.participants):'—'}</td><td>${fwH(s)}</td><td>${ph(s.researchType)}</td><td>${sb(s.status)}</td><td style="font-size:10px">${s.deliveryDate||'—'}</td><td style="text-align:right">${s.cost?fc(s.cost):'—'}</td><td>${ph(s.poc)}</td><td>${ph(s.category)}</td><td><div class="act-wrap"><button class="act-btn" onclick="openModal('${s.id}')">Edit</button><button class="act-btn del" onclick="del('${s.id}')">Delete</button></div></td></tr>`;});
+  document.getElementById('content').innerHTML=h+`</tbody></table></div>`;
+}
+function rollup(groups){
+  if(!studies.length){document.getElementById('content').innerHTML='<div class="rollup-wrap"><div class="empty">No data yet.</div></div>';return;}
+  let h=`<div class="rollup-wrap"><table class="rtbl"><thead><tr><th>Period</th><th>Studies</th><th>Delivered</th><th>Participants</th><th>Markets</th><th>Total cost</th></tr></thead><tbody>`;
+  groups.forEach(g=>{const ss=g.studies,cost=ss.reduce((a,s)=>a+(parseFloat(s.cost)||0),0),parts=ss.reduce((a,s)=>a+(parseInt(s.participants)||0),0);h+=`<tr><td style="font-weight:600">${g.label}</td><td>${ss.length}</td><td>${ss.filter(s=>s.status==='Delivered').length}</td><td>${fn(parts)}</td><td>${[...new Set(ss.flatMap(s=>s.markets||[]))].length}</td><td>${fc(cost)}</td></tr>`;});
+  document.getElementById('content').innerHTML=h+`</tbody></table></div>`;
+}
+function grpBy(fn2){const m={};studies.forEach(s=>{const k=fn2(s);if(!m[k])m[k]={label:k,studies:[]};m[k].studies.push(s);});return Object.values(m).sort((a,b)=>a.label.localeCompare(b.label));}
+function grpMonth(){return grpBy(s=>{const m=lm(s);if(!m)return'Unknown';const[y,mo]=m.split('-');return new Date(y,mo-1).toLocaleString('en-IE',{month:'long',year:'numeric'});});}
+function grpQ(){return grpBy(s=>{const m=lm(s);if(!m)return'Unknown';const[y,mo]=m.split('-');return `${y} Q${Math.ceil(parseInt(mo)/3)}`;});}
+function grpSem(){return grpBy(s=>{const m=lm(s);if(!m)return'Unknown';const[y,mo]=m.split('-');return `${y} ${parseInt(mo)<=6?'H1':'H2'}`;});}
+function grpYear(){return grpBy(s=>{const m=lm(s);return m?m.substring(0,4):'Unknown';});}
+function renderAnalytics(){
+  if(!studies.length){document.getElementById('content').innerHTML='<div class="rollup-wrap"><div class="empty">No studies yet.</div></div>';return;}
+  const cnt=(arr,key)=>{const m={};arr.forEach(s=>(s[key]||[]).forEach(v=>{m[v]=(m[v]||0)+1;}));return m;};
+  const cntS=(arr,key)=>{const m={};arr.forEach(s=>{const v=s[key]||'Unknown';m[v]=(m[v]||0)+1;});return m;};
+  document.getElementById('content').innerHTML=`<div class="pie-grid"><div class="pcrd"><div class="pclbl">By teams</div><div style="position:relative;height:180px"><canvas id="pD"></canvas></div><div class="pleg" id="lD"></div></div><div class="pcrd"><div class="pclbl">By market</div><div style="position:relative;height:180px"><canvas id="pM"></canvas></div><div class="pleg" id="lM"></div></div><div class="pcrd"><div class="pclbl">By research type</div><div style="position:relative;height:180px"><canvas id="pT"></canvas></div><div class="pleg" id="lT"></div></div><div class="pcrd"><div class="pclbl">By status</div><div style="position:relative;height:180px"><canvas id="pS"></canvas></div><div class="pleg" id="lS"></div></div><div class="pcrd"><div class="pclbl">By category</div><div style="position:relative;height:180px"><canvas id="pCa"></canvas></div><div class="pleg" id="lCa"></div></div><div class="pcrd"><div class="pclbl">By P-tag</div><div style="position:relative;height:180px"><canvas id="pP"></canvas></div><div class="pleg" id="lP"></div></div></div>`;
+  function mkPie(id,legId,obj){const lbls=Object.keys(obj),vals=Object.values(obj),tot=vals.reduce((a,b)=>a+b,0),cols=lbls.map((_,i)=>PAL[i%PAL.length]);new Chart(document.getElementById(id),{type:'pie',data:{labels:lbls,datasets:[{data:vals,backgroundColor:cols,borderColor:'#FAF4E8',borderWidth:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.label}: ${c.raw} (${Math.round(c.raw/tot*100)}%)`}}}}});const el=document.getElementById(legId);lbls.forEach((l,i)=>{el.innerHTML+=`<span><span style="width:9px;height:9px;border-radius:2px;background:${cols[i]};display:inline-block"></span>${l} (${vals[i]})</span>`;});}
+  mkPie('pD','lD',Object.keys(cnt(studies,'teams')).length?cnt(studies,'teams'):{'No data':1});
+  mkPie('pM','lM',Object.keys(cnt(studies,'markets')).length?cnt(studies,'markets'):{'No data':1});
+  mkPie('pT','lT',Object.keys(cnt(studies,'researchType')).length?cnt(studies,'researchType'):{'No data':1});
+  mkPie('pS','lS',Object.keys(cntS(studies,'status')).length?cntS(studies,'status'):{'No data':1});
+  mkPie('pCa','lCa',Object.keys(cnt(studies,'category')).length?cnt(studies,'category'):{'No data':1});
+  mkPie('pP','lP',Object.keys(cntS(studies,'ptag')).length?cntS(studies,'ptag'):{'No data':1});
+}
+function render(){renderKPIs();renderTrend();if(view==='all')renderAll();else if(view==='monthly')rollup(grpMonth());else if(view==='quarterly')rollup(grpQ());else if(view==='semestral')rollup(grpSem());else if(view==='annual')rollup(grpYear());else if(view==='analytics')renderAnalytics();}
+window.del=function(id){if(!confirm('Delete this study?'))return;studies=studies.filter(s=>s.id!==id);save();render();};
+document.getElementById('tabStrip').addEventListener('click',e=>{const b=e.target.closest('[data-v]');if(!b)return;view=b.dataset.v;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');render();});
+document.getElementById('fStatus').addEventListener('change',()=>{if(view==='all')renderAll();});
+function buildMS(id,opts,lbl,withAll){const aO=withAll?`<label class="msopt msall"><input type="checkbox" id="msAll_${id}" onchange="msAllChg('${id}')"> Select all</label>`:'';return `<div class="fg"><label class="flbl">${lbl}</label><div class="msw" id="msW_${id}"><div class="mspills" id="msP_${id}"></div><div style="font-size:11px;color:var(--muted)" id="msHint_${id}">Click to select…</div><div class="msdrop" id="msD_${id}">${aO}${opts.map(o=>`<label class="msopt"><input type="checkbox" value="${o}" onchange="msChg('${id}')"> ${o}</label>`).join('')}</div></div></div>`;}
+window.msAllChg=function(id){const a=document.getElementById(`msAll_${id}`);document.querySelectorAll(`#msD_${id} input[type=checkbox]:not(#msAll_${id})`).forEach(c=>c.checked=a.checked);msChg(id);};
+window.msChg=function(id){const cbs=document.querySelectorAll(`#msD_${id} input[type=checkbox]:not(#msAll_${id})`);const sel=[...cbs].filter(c=>c.checked).map(c=>c.value);const p=document.getElementById(`msP_${id}`),h=document.getElementById(`msHint_${id}`);p.innerHTML=sel.map(v=>`<span class="msp">${v}<span class="rm" onclick="rmPill('${id}','${v}')">×</span></span>`).join('');h.style.display=sel.length?'none':'block';const a=document.getElementById(`msAll_${id}`);if(a){const t=cbs.length;a.checked=sel.length===t;a.indeterminate=sel.length>0&&sel.length<t;}};
+window.rmPill=function(id,val){const cb=document.querySelector(`#msD_${id} input[value="${CSS.escape(val)}"]`);if(cb){cb.checked=false;msChg(id);}};
+function getMsVal(id){return[...document.querySelectorAll(`#msD_${id} input[type=checkbox]:not(#msAll_${id}):checked`)].map(c=>c.value);}
+function setMsVal(id,vals){document.querySelectorAll(`#msD_${id} input[type=checkbox]:not(#msAll_${id})`).forEach(c=>c.checked=vals.includes(c.value));msChg(id);}
+document.addEventListener('click',e=>{document.querySelectorAll('.msdrop.open').forEach(d=>{if(!d.parentElement.contains(e.target))d.classList.remove('open');});const w=e.target.closest('.msw');if(w&&!e.target.closest('.msdrop')&&!e.target.closest('.rm')){w.querySelector('.msdrop').classList.toggle('open');}});
+window.openModal=function(idOrNull){
+  const s=idOrNull?studies.find(x=>x.id===idOrNull):null;
+  editId=s?s.id:null;
+  document.getElementById('mTitle').textContent=s?'Edit research study':'Add research study';
+  document.getElementById('mForm').innerHTML=`<div class="fg full"><label class="flbl">Research name</label><input class="finp" id="f_name" value="${s?esc(s.name):''}"></div><div class="fg"><label class="flbl">Project</label><input class="finp" id="f_proj" list="pjl" value="${s?esc(s.project):''}"><datalist id="pjl">${PROJECTS.map(p=>`<option value="${p}">`).join('')}</datalist></div><div class="fg"><label class="flbl">P-tag</label><select class="finp" id="f_ptag">${PTAGS.map(p=>`<option${s&&s.ptag===p?' selected':''}>${p}</option>`).join('')}</select></div>${buildMS('teams',TEAMS,'Teams',false)}<div class="fg"><label class="flbl">Requestor</label><input class="finp" id="f_req" value="${s?esc(s.requestor):''}"></div><div class="fg"><label class="flbl">Vendor / agency</label><input class="finp" id="f_ven" value="${s?esc(s.vendor):''}"></div>${buildMS('markets',MARKETS,'Markets',true)}<div class="fg"><label class="flbl">Participants</label><input class="finp" type="number" id="f_part" value="${s?s.participants||'':''}"></div><div class="fg"><label class="flbl">Fieldwork start (month)</label><input class="finp" type="month" id="f_fws" value="${s?s.fieldworkStart||'':''}"></div><div class="fg"><label class="flbl">Fieldwork end (month)</label><input class="finp" type="month" id="f_fwe" value="${s?s.fieldworkEnd||'':''}"></div>${buildMS('researchType',RTYPES,'Research type',false)}<div class="fg"><label class="flbl">Status</label><select class="finp" id="f_st">${STATUSES.map(x=>`<option${s&&s.status===x?' selected':''}>${x}</option>`).join('')}</select></div><div class="fg"><label class="flbl">Delivery / conclusion date</label><input class="finp" type="date" id="f_del" value="${s?s.deliveryDate||'':''}"></div><div class="fg"><label class="flbl">Cost (€)</label><input class="finp" type="number" id="f_cost" value="${s?s.cost||'':''}"></div>${buildMS('poc',POCS,'Research POC',false)}${buildMS('cat',CATS,'Category',false)}`;
+  if(s){setMsVal('teams',s.teams||[]);setMsVal('markets',s.markets||[]);setMsVal('researchType',s.researchType||[]);setMsVal('poc',s.poc||[]);setMsVal('cat',s.category||[]);}
+  document.getElementById('modalBg').classList.add('open');
+};
+document.getElementById('addBtn').addEventListener('click',()=>openModal(null));
+document.getElementById('mCancel').addEventListener('click',()=>document.getElementById('modalBg').classList.remove('open'));
+document.getElementById('modalBg').addEventListener('click',e=>{if(e.target===document.getElementById('modalBg'))document.getElementById('modalBg').classList.remove('open');});
+document.getElementById('mSave').addEventListener('click',()=>{
+  const name=document.getElementById('f_name').value.trim();if(!name){document.getElementById('f_name').focus();return;}
+  const obj={name,project:document.getElementById('f_proj').value.trim(),ptag:document.getElementById('f_ptag').value,teams:getMsVal('teams'),requestor:document.getElementById('f_req').value.trim(),vendor:document.getElementById('f_ven').value.trim(),markets:getMsVal('markets'),participants:document.getElementById('f_part').value,fieldworkStart:document.getElementById('f_fws').value,fieldworkEnd:document.getElementById('f_fwe').value,researchType:getMsVal('researchType'),status:document.getElementById('f_st').value,deliveryDate:document.getElementById('f_del').value,cost:document.getElementById('f_cost').value,poc:getMsVal('poc'),category:getMsVal('cat')};
+  if(editId){const i=studies.findIndex(x=>x.id===editId);if(i>-1)studies[i]={...studies[i],...obj};}
+  else{obj.id=genId();studies.push(obj);}
+  save();document.getElementById('modalBg').classList.remove('open');render();
+});
+load();
+</script>
