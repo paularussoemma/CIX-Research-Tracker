@@ -1,12 +1,23 @@
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIX Research Tracker</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--bg:#FAF4E8;--bg-card:#F0E3C8;--bg-card2:#F7EFD8;--bg-white:#fff;--dark:#3D3730;--orange:#FF8900;--muted:#8A7E74;--border:#D8C8A4;--fs:Inter,'Trebuchet MS',Arial,sans-serif;--fser:Georgia,serif;}
 html,body{width:100%;background:var(--bg);color:var(--dark);font-family:var(--fs);font-size:12px}
 .app{display:flex;flex-direction:column;min-height:100vh}
-.topbar{background:var(--bg);border-bottom:1px solid var(--border);padding:18px 28px 14px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px}
+.topbar{background:var(--bg);border-bottom:1px solid var(--border);padding:18px 28px 14px;display:flex;align-items:flex-end;justify-content:space-between;gap:16px;flex-wrap:wrap}
 .topbar-left .eyebrow{font-size:10px;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-bottom:3px}
 .topbar-left h1{font-family:var(--fser);font-weight:normal;font-size:24px;color:var(--dark);line-height:1.2}
+.topbar-right{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.sync-status{font-size:11px;color:var(--muted)}
+.sync-status.ok{color:#2e7d32}.sync-status.err{color:#c62828}.sync-status.saving{color:var(--orange)}
+.sync-btn{background:none;border:1px solid var(--border);border-radius:20px;padding:6px 12px;font-size:11px;cursor:pointer;font-family:var(--fs);color:var(--muted);display:flex;align-items:center;gap:4px}
+.sync-btn:hover{background:var(--bg-card);color:var(--dark)}
 .kpi-bar{display:grid;grid-template-columns:repeat(6,1fr);background:var(--bg-card);border-bottom:1px solid var(--border)}
 .kpi{padding:13px 20px;border-right:1px solid var(--border)}.kpi:last-child{border-right:none}
 .kpi-lbl{font-size:9px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;font-weight:600}
@@ -16,7 +27,7 @@ html,body{width:100%;background:var(--bg);color:var(--dark);font-family:var(--fs
 .chart-strip{background:var(--bg-white);border-bottom:1px solid var(--border);padding:14px 28px 12px}
 .chart-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
 .chart-hd-l{font-size:11px;font-weight:600;color:var(--dark)}.chart-hd-r{font-size:10px;color:var(--muted)}
-.tab-strip{background:var(--bg);border-bottom:1px solid var(--border);padding:0 28px;display:flex;gap:2px}
+.tab-strip{background:var(--bg);border-bottom:1px solid var(--border);padding:0 28px;display:flex;gap:2px;overflow-x:auto}
 .tab{padding:11px 18px;border-bottom:2px solid transparent;font-size:12px;font-weight:500;color:var(--muted);cursor:pointer;white-space:nowrap;background:none;border-top:none;border-left:none;border-right:none;font-family:var(--fs);transition:color .15s,border-color .15s}
 .tab:hover{color:var(--dark)}.tab.active{color:var(--orange);border-bottom-color:var(--orange)}
 .toolbar{background:var(--bg);padding:10px 28px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);flex-wrap:wrap}
@@ -77,14 +88,26 @@ tbody td{padding:7px 8px;vertical-align:middle;font-size:11px;overflow:hidden}
 .pleg{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
 .pleg span{display:flex;align-items:center;gap:4px;font-size:10px;color:var(--dark)}
 .q-badge{display:inline-block;padding:2px 7px;border-radius:5px;font-size:9px;font-weight:700;background:var(--bg-card);color:var(--dark);border:1px solid var(--border);white-space:nowrap}
+/* Token modal */
+.token-modal{background:var(--bg-white);border-radius:16px;padding:28px;width:480px;max-width:95vw;border:1px solid var(--border)}
+.token-modal h2{font-family:var(--fser);font-size:18px;font-weight:400;color:var(--dark);margin-bottom:8px}
+.token-modal p{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px}
+.token-modal input{width:100%;font-size:13px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;background:var(--bg);color:var(--dark);font-family:var(--fs);margin-bottom:12px}
+.token-note{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.5}
 </style>
+</head>
+<body>
 <div class="app">
   <div class="topbar">
     <div class="topbar-left">
       <div class="eyebrow">CIX — Consumer Insights &amp; Experience</div>
       <h1>Research Tracker &amp; Cost Center</h1>
     </div>
-    <div style="font-size:10px;color:var(--muted)" id="storageLbl">Loading…</div>
+    <div class="topbar-right">
+      <span class="sync-status" id="syncStatus">Loading…</span>
+      <button class="sync-btn" onclick="manualSync()">↻ Refresh</button>
+      <button class="sync-btn" onclick="openTokenModal()">⚙ GitHub</button>
+    </div>
   </div>
   <div class="kpi-bar">
     <div class="kpi"><div class="kpi-lbl">Total studies</div><div class="kpi-val" id="k1">—</div></div>
@@ -118,8 +141,10 @@ tbody td{padding:7px 8px;vertical-align:middle;font-size:11px;overflow:hidden}
     </select>
     <button class="add-btn" id="addBtn">+ Add research</button>
   </div>
-  <div class="content" id="content"></div>
+  <div class="content" id="content"><div class="empty">Loading data from GitHub…</div></div>
 </div>
+
+<!-- Study modal -->
 <div class="modal-bg" id="modalBg">
   <div class="modal">
     <h2 id="mTitle">Add research study</h2>
@@ -130,9 +155,30 @@ tbody td{padding:7px 8px;vertical-align:middle;font-size:11px;overflow:hidden}
     </div>
   </div>
 </div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+
+<!-- Token modal -->
+<div class="modal-bg" id="tokenBg">
+  <div class="token-modal">
+    <h2>GitHub connection</h2>
+    <p>To save changes, you need a GitHub personal access token. Stored only in your browser, never shared. Visitors without a token can still view all data.</p>
+    <input type="password" id="tokenInput" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx">
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <button class="btn-c" onclick="closeTokenModal()">Cancel</button>
+      <button class="btn-s" onclick="saveToken()">Save token</button>
+    </div>
+    <p class="token-note">To create a token: github.com → Profile → Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token. Tick the <strong>repo</strong> checkbox. Set expiry to 1 year.</p>
+    <p class="token-note" style="margin-top:8px" id="tokenClearWrap"></p>
+  </div>
+</div>
+
 <script>
-const SK='cix-v5-permanent';
+// ── CONFIG ────────────────────────────────────────────────────────────────────
+const GITHUB_USER = 'paularussoemma';
+const GITHUB_REPO = 'CIX-Research-Tracker';
+const GITHUB_FILE = 'data.json';
+const GITHUB_BRANCH = 'main';
+// ─────────────────────────────────────────────────────────────────────────────
+
 const MARKETS=['PT','ES','FR','CH','BE','UK','DE','AT','IT','IR','IN','NL','PH','JP','HK','KO','AU','CA','CO','MX','BR','CL'];
 const TEAMS=['Tech','Ecomm','Ops','Marketing','Markets','B&CX','Category Management','R&D','Engineering','CE','Brand','Creative','Paid Social','Paid Search','Influencer Marketing','CRM','CRO','Offline'];
 const POCS=['Paula','Joana','Egon','Sofija','Michelle','Gabriela','Team Swap'];
@@ -143,30 +189,90 @@ const RTYPES=['Survey','Interview','Unmoderated test','In-person test','Field st
 const PROJECTS=['Increasing Brand Preference','From Satisfaction to Advocacy','Webshop Optimisation','Product Launch','Consumer Intelligence','Other'];
 const PAL=['#FF8900','#FFA236','#FFCDA2','#D8C8A4','#8A7E74','#3D3730','#2E2F3C','#B0A090','#F0E3C8','#FFF9F3','#c0392b','#27ae60','#185FA5'];
 const ML=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
-let studies=[],view='all',editId=null,trendChart=null;
+
+let studies=[], view='all', editId=null, trendChart=null, fileSha=null;
+
+// ── GitHub helpers ────────────────────────────────────────────────────────────
+function getToken(){return localStorage.getItem('cix_gh_token')||'';}
+function setStatus(msg,cls){const el=document.getElementById('syncStatus');el.textContent=msg;el.className='sync-status'+(cls?' '+cls:'');}
+
+async function fetchFromGitHub(){
+  const url=`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}?ref=${GITHUB_BRANCH}&t=${Date.now()}`;
+  const headers={'Accept':'application/vnd.github+json'};
+  const token=getToken();if(token)headers['Authorization']=`Bearer ${token}`;
+  const r=await fetch(url,{headers});
+  if(r.status===404){fileSha=null;return[];}
+  if(!r.ok)throw new Error(`GitHub ${r.status}`);
+  const j=await r.json();
+  fileSha=j.sha;
+  return JSON.parse(atob(j.content.replace(/\n/g,'')));
+}
+
+async function saveToGitHub(data){
+  const token=getToken();
+  if(!token){openTokenModal();return false;}
+  const url=`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${GITHUB_FILE}`;
+  const body={message:'CIX research tracker update',content:btoa(unescape(encodeURIComponent(JSON.stringify(data,null,2)))),branch:GITHUB_BRANCH};
+  if(fileSha)body.sha=fileSha;
+  setStatus('Saving…','saving');
+  const r=await fetch(url,{method:'PUT',headers:{'Accept':'application/vnd.github+json','Authorization':`Bearer ${token}`,'Content-Type':'application/json'},body:JSON.stringify(body)});
+  if(!r.ok){const e=await r.json();throw new Error(e.message||`GitHub ${r.status}`);}
+  const j=await r.json();fileSha=j.content.sha;
+  return true;
+}
 
 async function load(){
+  setStatus('Loading…');
   try{
-    const r=await window.storage.get(SK,true);
-    if(r&&r.value)studies=JSON.parse(r.value);
-    document.getElementById('storageLbl').textContent=`Shared · ${studies.length} studies loaded`;
-  }catch(e){document.getElementById('storageLbl').textContent='Shared · ready';}
+    studies=await fetchFromGitHub();
+    setStatus(`Up to date · ${studies.length} studies`,'ok');
+  }catch(e){
+    setStatus('Load failed','err');
+    try{const l=localStorage.getItem('cix-research-tracker-v5');if(l)studies=JSON.parse(l);}catch(_){}
+  }
   render();
 }
+
 async function save(){
-  try{await window.storage.set(SK,JSON.stringify(studies),true);}catch(e){}
-  document.getElementById('storageLbl').textContent=`Shared · ${studies.length} studies`;
+  try{localStorage.setItem('cix-research-tracker-v5',JSON.stringify(studies));}catch(_){}
+  try{
+    await saveToGitHub(studies);
+    setStatus(`Saved ✓ · ${studies.length} studies`,'ok');
+  }catch(e){
+    setStatus('Save failed: '+e.message,'err');
+    alert('Could not save to GitHub: '+e.message+'\n\nYour change is saved locally as a backup. Check your GitHub token.');
+  }
 }
+
+async function manualSync(){
+  setStatus('Refreshing…');
+  try{studies=await fetchFromGitHub();render();setStatus(`Up to date · ${studies.length} studies`,'ok');}
+  catch(e){setStatus('Refresh failed','err');}
+}
+
+// ── Token modal ───────────────────────────────────────────────────────────────
+function openTokenModal(){
+  document.getElementById('tokenInput').value=getToken();
+  const wrap=document.getElementById('tokenClearWrap');
+  wrap.innerHTML=getToken()?'<a href="#" onclick="clearToken();return false;" style="color:#c62828;font-size:11px;">Remove saved token</a>':'';
+  document.getElementById('tokenBg').classList.add('open');
+}
+function closeTokenModal(){document.getElementById('tokenBg').classList.remove('open');}
+function saveToken(){const t=document.getElementById('tokenInput').value.trim();if(t)localStorage.setItem('cix_gh_token',t);else localStorage.removeItem('cix_gh_token');closeTokenModal();}
+function clearToken(){localStorage.removeItem('cix_gh_token');closeTokenModal();}
+
+// ── Utility ───────────────────────────────────────────────────────────────────
 function genId(){const y=new Date().getFullYear(),u=studies.map(s=>s.id);let n=1;while(u.includes(`CIX-${y}-${String(n).padStart(3,'0')}`))n++;return `CIX-${y}-${String(n).padStart(3,'0')}`;}
 function fc(v){return '€'+(parseFloat(v)||0).toLocaleString('en-IE',{minimumFractionDigits:0,maximumFractionDigits:0});}
 function fn(v){return Math.round(v||0).toLocaleString('en-IE');}
 function lm(s){return s.fieldworkStart||null;}
 function ph(arr){if(!arr||!arr.length)return '<span style="color:var(--muted)">—</span>';return '<div class="pills">'+arr.map(v=>`<span class="pill">${v}</span>`).join('')+'</div>';}
-function esc(v){return(v||'').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
+function esc(v){return(v||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');}
 function sb(st){const m={'Requested':'req','Scoping':'sco','Fieldwork':'fie','Analysis':'ana','Delivered':'del','On Hold':'hol','Cancelled':'can'};return `<span class="badge s-${m[st]||'req'}">${st||'—'}</span>`;}
 function toQ(ym){if(!ym)return null;return `Q${Math.ceil(parseInt(ym.split('-')[1])/3)}`;}
 function fwH(s){const qs=toQ(s.fieldworkStart),qe=toQ(s.fieldworkEnd);if(!qs&&!qe)return '<span style="color:var(--muted)">—</span>';if(!qe||qs===qe)return `<span class="q-badge">${qs}</span>`;return `<span class="q-badge">${qs}</span><span style="color:var(--muted);font-size:9px;margin:0 2px">→</span><span class="q-badge">${qe}</span>`;}
 
+// ── KPIs and charts ───────────────────────────────────────────────────────────
 function renderKPIs(){
   const t=studies.length,ac=studies.filter(s=>['Scoping','Fieldwork','Analysis'].includes(s.status)).length;
   const del=studies.filter(s=>s.status==='Delivered').length;
@@ -177,6 +283,7 @@ function renderKPIs(){
   document.getElementById('k3').textContent=del;document.getElementById('k4').textContent=la;
   document.getElementById('k5').textContent=fc(cost);document.getElementById('k6').textContent=fn(parts);
 }
+
 function renderTrend(){
   const months=ML.map((label,i)=>({key:`2026-${String(i+1).padStart(2,'0')}`,label,count:0}));
   studies.forEach(s=>{const m=lm(s);if(m){const k=m.substring(0,7),f=months.find(x=>x.key===k);if(f)f.count++;}});
@@ -187,8 +294,11 @@ function renderTrend(){
   if(trendChart)trendChart.destroy();
   trendChart=new Chart(ctx,{type:'bar',data:{labels:months.map(m=>m.label),datasets:[{data:months.map(m=>m.count),backgroundColor:months.map(m=>m.key===ck?'#FF8900':m.count>0?'#FFA236':'#D8C8A4'),borderRadius:3,borderSkipped:false}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`${c.raw} studies`}}},scales:{x:{grid:{display:false},ticks:{font:{size:10},color:'#8A7E74',autoSkip:false}},y:{grid:{color:'#F0E3C8'},ticks:{stepSize:1,font:{size:10},color:'#8A7E74'},min:0,beginAtZero:true}}}});
 }
+
+// ── Table ─────────────────────────────────────────────────────────────────────
 const HEADS=['ID','Research name','Project','P','Teams','Requestor','Vendor','Markets','Participants','Fieldwork','Type','Status','Delivery','Cost (€)','POC','Category',''];
 const CW=[74,124,112,40,100,90,86,112,66,80,100,84,80,64,100,88,70];
+
 function renderAll(){
   const f=document.getElementById('fStatus').value;let data=[...studies];if(f!=='all')data=data.filter(s=>s.status===f);
   if(!data.length){document.getElementById('content').innerHTML='<div class="tbl-wrap"><div class="empty">No studies yet. Click <strong>+ Add research</strong> to get started.</div></div>';return;}
@@ -196,17 +306,22 @@ function renderAll(){
   data.forEach(s=>{h+=`<tr><td class="id-cell">${s.id}</td><td>${esc(s.name||'')}</td><td>${esc(s.project||'')}</td><td>${s.ptag?`<span style="font-size:10px;font-weight:700;color:var(--orange)">${s.ptag}</span>`:''}</td><td>${ph(s.teams)}</td><td>${esc(s.requestor||'')}</td><td>${esc(s.vendor||'')}</td><td>${ph(s.markets)}</td><td style="text-align:right">${s.participants?fn(s.participants):'—'}</td><td>${fwH(s)}</td><td>${ph(s.researchType)}</td><td>${sb(s.status)}</td><td style="font-size:10px">${s.deliveryDate||'—'}</td><td style="text-align:right">${s.cost?fc(s.cost):'—'}</td><td>${ph(s.poc)}</td><td>${ph(s.category)}</td><td><div class="act-wrap"><button class="act-btn" onclick="openModal('${s.id}')">Edit</button><button class="act-btn del" onclick="del('${s.id}')">Delete</button></div></td></tr>`;});
   document.getElementById('content').innerHTML=h+`</tbody></table></div>`;
 }
+
+// ── Rollup views ──────────────────────────────────────────────────────────────
+function grpBy(fn2){const m={};studies.forEach(s=>{const k=fn2(s);if(!m[k])m[k]={label:k,studies:[]};m[k].studies.push(s);});return Object.values(m).sort((a,b)=>a.label.localeCompare(b.label));}
+function grpMonth(){return grpBy(s=>{const m=lm(s);if(!m)return'Unknown';const[y,mo]=m.split('-');return new Date(y,mo-1).toLocaleString('en-IE',{month:'long',year:'numeric'});});}
+function grpQ(){return grpBy(s=>{const m=lm(s);if(!m)return'Unknown';const[y,mo]=m.split('-');return `${y} Q${Math.ceil(parseInt(mo)/3)}`;});}
+function grpSem(){return grpBy(s=>{const m=lm(s);if(!m)return'Unknown';const[y,mo]=m.split('-');return `${y} ${parseInt(mo)<=6?'H1':'H2'}`;});}
+function grpYear(){return grpBy(s=>{const m=lm(s);return m?m.substring(0,4):'Unknown';});}
+
 function rollup(groups){
   if(!studies.length){document.getElementById('content').innerHTML='<div class="rollup-wrap"><div class="empty">No data yet.</div></div>';return;}
   let h=`<div class="rollup-wrap"><table class="rtbl"><thead><tr><th>Period</th><th>Studies</th><th>Delivered</th><th>Participants</th><th>Markets</th><th>Total cost</th></tr></thead><tbody>`;
   groups.forEach(g=>{const ss=g.studies,cost=ss.reduce((a,s)=>a+(parseFloat(s.cost)||0),0),parts=ss.reduce((a,s)=>a+(parseInt(s.participants)||0),0);h+=`<tr><td style="font-weight:600">${g.label}</td><td>${ss.length}</td><td>${ss.filter(s=>s.status==='Delivered').length}</td><td>${fn(parts)}</td><td>${[...new Set(ss.flatMap(s=>s.markets||[]))].length}</td><td>${fc(cost)}</td></tr>`;});
   document.getElementById('content').innerHTML=h+`</tbody></table></div>`;
 }
-function grpBy(fn2){const m={};studies.forEach(s=>{const k=fn2(s);if(!m[k])m[k]={label:k,studies:[]};m[k].studies.push(s);});return Object.values(m).sort((a,b)=>a.label.localeCompare(b.label));}
-function grpMonth(){return grpBy(s=>{const m=lm(s);if(!m)return'Unknown';const[y,mo]=m.split('-');return new Date(y,mo-1).toLocaleString('en-IE',{month:'long',year:'numeric'});});}
-function grpQ(){return grpBy(s=>{const m=lm(s);if(!m)return'Unknown';const[y,mo]=m.split('-');return `${y} Q${Math.ceil(parseInt(mo)/3)}`;});}
-function grpSem(){return grpBy(s=>{const m=lm(s);if(!m)return'Unknown';const[y,mo]=m.split('-');return `${y} ${parseInt(mo)<=6?'H1':'H2'}`;});}
-function grpYear(){return grpBy(s=>{const m=lm(s);return m?m.substring(0,4):'Unknown';});}
+
+// ── Analytics ─────────────────────────────────────────────────────────────────
 function renderAnalytics(){
   if(!studies.length){document.getElementById('content').innerHTML='<div class="rollup-wrap"><div class="empty">No studies yet.</div></div>';return;}
   const cnt=(arr,key)=>{const m={};arr.forEach(s=>(s[key]||[]).forEach(v=>{m[v]=(m[v]||0)+1;}));return m;};
@@ -220,17 +335,34 @@ function renderAnalytics(){
   mkPie('pCa','lCa',Object.keys(cnt(studies,'category')).length?cnt(studies,'category'):{'No data':1});
   mkPie('pP','lP',Object.keys(cntS(studies,'ptag')).length?cntS(studies,'ptag'):{'No data':1});
 }
+
 function render(){renderKPIs();renderTrend();if(view==='all')renderAll();else if(view==='monthly')rollup(grpMonth());else if(view==='quarterly')rollup(grpQ());else if(view==='semestral')rollup(grpSem());else if(view==='annual')rollup(grpYear());else if(view==='analytics')renderAnalytics();}
-window.del=function(id){if(!confirm('Delete this study?'))return;studies=studies.filter(s=>s.id!==id);save();render();};
+
+// ── Delete ────────────────────────────────────────────────────────────────────
+window.del=async function(id){
+  if(!confirm('Delete this study?'))return;
+  studies=studies.filter(s=>s.id!==id);
+  render();
+  await save();
+};
+
+// ── Tabs ──────────────────────────────────────────────────────────────────────
 document.getElementById('tabStrip').addEventListener('click',e=>{const b=e.target.closest('[data-v]');if(!b)return;view=b.dataset.v;document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));b.classList.add('active');render();});
 document.getElementById('fStatus').addEventListener('change',()=>{if(view==='all')renderAll();});
-function buildMS(id,opts,lbl,withAll){const aO=withAll?`<label class="msopt msall"><input type="checkbox" id="msAll_${id}" onchange="msAllChg('${id}')"> Select all</label>`:'';return `<div class="fg"><label class="flbl">${lbl}</label><div class="msw" id="msW_${id}"><div class="mspills" id="msP_${id}"></div><div style="font-size:11px;color:var(--muted)" id="msHint_${id}">Click to select…</div><div class="msdrop" id="msD_${id}">${aO}${opts.map(o=>`<label class="msopt"><input type="checkbox" value="${o}" onchange="msChg('${id}')"> ${o}</label>`).join('')}</div></div></div>`;}
+
+// ── Multi-select ──────────────────────────────────────────────────────────────
+function buildMS(id,opts,lbl,withAll){
+  const aO=withAll?`<label class="msopt msall"><input type="checkbox" id="msAll_${id}" onchange="msAllChg('${id}')"> Select all</label>`:'';
+  return `<div class="fg"><label class="flbl">${lbl}</label><div class="msw" id="msW_${id}"><div class="mspills" id="msP_${id}"></div><div style="font-size:11px;color:var(--muted)" id="msHint_${id}">Click to select…</div><div class="msdrop" id="msD_${id}">${aO}${opts.map(o=>`<label class="msopt"><input type="checkbox" value="${o}" onchange="msChg('${id}')"> ${o}</label>`).join('')}</div></div></div>`;
+}
 window.msAllChg=function(id){const a=document.getElementById(`msAll_${id}`);document.querySelectorAll(`#msD_${id} input[type=checkbox]:not(#msAll_${id})`).forEach(c=>c.checked=a.checked);msChg(id);};
 window.msChg=function(id){const cbs=document.querySelectorAll(`#msD_${id} input[type=checkbox]:not(#msAll_${id})`);const sel=[...cbs].filter(c=>c.checked).map(c=>c.value);const p=document.getElementById(`msP_${id}`),h=document.getElementById(`msHint_${id}`);p.innerHTML=sel.map(v=>`<span class="msp">${v}<span class="rm" onclick="rmPill('${id}','${v}')">×</span></span>`).join('');h.style.display=sel.length?'none':'block';const a=document.getElementById(`msAll_${id}`);if(a){const t=cbs.length;a.checked=sel.length===t;a.indeterminate=sel.length>0&&sel.length<t;}};
 window.rmPill=function(id,val){const cb=document.querySelector(`#msD_${id} input[value="${CSS.escape(val)}"]`);if(cb){cb.checked=false;msChg(id);}};
 function getMsVal(id){return[...document.querySelectorAll(`#msD_${id} input[type=checkbox]:not(#msAll_${id}):checked`)].map(c=>c.value);}
 function setMsVal(id,vals){document.querySelectorAll(`#msD_${id} input[type=checkbox]:not(#msAll_${id})`).forEach(c=>c.checked=vals.includes(c.value));msChg(id);}
 document.addEventListener('click',e=>{document.querySelectorAll('.msdrop.open').forEach(d=>{if(!d.parentElement.contains(e.target))d.classList.remove('open');});const w=e.target.closest('.msw');if(w&&!e.target.closest('.msdrop')&&!e.target.closest('.rm')){w.querySelector('.msdrop').classList.toggle('open');}});
+
+// ── Study modal ───────────────────────────────────────────────────────────────
 window.openModal=function(idOrNull){
   const s=idOrNull?studies.find(x=>x.id===idOrNull):null;
   editId=s?s.id:null;
@@ -239,15 +371,22 @@ window.openModal=function(idOrNull){
   if(s){setMsVal('teams',s.teams||[]);setMsVal('markets',s.markets||[]);setMsVal('researchType',s.researchType||[]);setMsVal('poc',s.poc||[]);setMsVal('cat',s.category||[]);}
   document.getElementById('modalBg').classList.add('open');
 };
+
 document.getElementById('addBtn').addEventListener('click',()=>openModal(null));
 document.getElementById('mCancel').addEventListener('click',()=>document.getElementById('modalBg').classList.remove('open'));
 document.getElementById('modalBg').addEventListener('click',e=>{if(e.target===document.getElementById('modalBg'))document.getElementById('modalBg').classList.remove('open');});
-document.getElementById('mSave').addEventListener('click',()=>{
+
+document.getElementById('mSave').addEventListener('click',async()=>{
   const name=document.getElementById('f_name').value.trim();if(!name){document.getElementById('f_name').focus();return;}
   const obj={name,project:document.getElementById('f_proj').value.trim(),ptag:document.getElementById('f_ptag').value,teams:getMsVal('teams'),requestor:document.getElementById('f_req').value.trim(),vendor:document.getElementById('f_ven').value.trim(),markets:getMsVal('markets'),participants:document.getElementById('f_part').value,fieldworkStart:document.getElementById('f_fws').value,fieldworkEnd:document.getElementById('f_fwe').value,researchType:getMsVal('researchType'),status:document.getElementById('f_st').value,deliveryDate:document.getElementById('f_del').value,cost:document.getElementById('f_cost').value,poc:getMsVal('poc'),category:getMsVal('cat')};
   if(editId){const i=studies.findIndex(x=>x.id===editId);if(i>-1)studies[i]={...studies[i],...obj};}
   else{obj.id=genId();studies.push(obj);}
-  save();document.getElementById('modalBg').classList.remove('open');render();
+  document.getElementById('modalBg').classList.remove('open');
+  render();
+  await save();
 });
+
 load();
 </script>
+</body>
+</html>
