@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Quality Perception - Wave 1",
+    "project": "Increasing Brand Preference",
+    "ptag": "P2",
+    "teams": [
+      "B&CX",
+      "Brand"
+    ],
+    "requestor": "Ingrid H-Fray; Amanda Allegrini",
+    "vendor": "GWI",
+    "markets": [
+      "FR",
+      "UK",
+      "DE",
+      "JP",
+      "AU",
+      "BR"
+    ],
+    "participants": "2450",
+    "fieldworkStart": "2026-03",
+    "fieldworkEnd": "2026-04",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Delivered",
+    "deliveryDate": "2026-04-10",
+    "cost": "31605",
+    "poc": [
+      "Joana"
+    ],
+    "category": [],
+    "id": "CIX-2026-001"
+  }
+]
