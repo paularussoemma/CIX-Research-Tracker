@@ -312,5 +312,41 @@
     ],
     "category": [],
     "id": "CIX-2026-009"
+  },
+  {
+    "name": "Performance Line - Buyers Discovery",
+    "project": "Scale Performance Line",
+    "ptag": "P2",
+    "teams": [
+      "Tech",
+      "Ecomm",
+      "Marketing",
+      "Markets",
+      "B&CX",
+      "Category Management",
+      "Engineering"
+    ],
+    "requestor": "Duarte Costa",
+    "vendor": "CRM Database",
+    "markets": [
+      "FR",
+      "DE"
+    ],
+    "participants": "10",
+    "fieldworkStart": "2026-06",
+    "fieldworkEnd": "2026-06",
+    "researchType": [
+      "Interview"
+    ],
+    "status": "Analysis",
+    "deliveryDate": "2026-06-24",
+    "cost": "200",
+    "poc": [
+      "Paula"
+    ],
+    "category": [
+      "Mattress"
+    ],
+    "id": "CIX-2026-010"
   }
 ]
