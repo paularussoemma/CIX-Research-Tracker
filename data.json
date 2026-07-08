@@ -494,7 +494,7 @@
     "researchType": [
       "Survey"
     ],
-    "status": "Fieldwork",
+    "status": "Analysis",
     "deliveryDate": "",
     "cost": "6575",
     "poc": [
@@ -570,7 +570,7 @@
     "teams": [
       "Category Management"
     ],
-    "requestor": "Christoph KrauÃ",
+    "requestor": "Christoph KrauÃÂ",
     "vendor": "SAGO",
     "markets": [],
     "participants": "450",
