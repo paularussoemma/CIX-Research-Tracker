@@ -794,5 +794,30 @@
     ],
     "category": [],
     "id": "CIX-2026-026"
+  },
+  {
+    "name": "Services Qualitative Discovery",
+    "project": "Premium Services",
+    "ptag": "P2",
+    "teams": [
+      "Ops"
+    ],
+    "requestor": "Stefan Hofer",
+    "vendor": "UserTesting",
+    "markets": [],
+    "participants": "",
+    "fieldworkStart": "2026-07",
+    "fieldworkEnd": "2026-08",
+    "researchType": [
+      "Interview"
+    ],
+    "status": "Scoping",
+    "deliveryDate": "2026-08-07",
+    "cost": "",
+    "poc": [
+      "Egon"
+    ],
+    "category": [],
+    "id": "CIX-2026-027"
   }
 ]
