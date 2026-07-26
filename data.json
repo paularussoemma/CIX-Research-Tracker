@@ -594,8 +594,10 @@
     "name": "Annual UserTesting subscription",
     "project": "",
     "ptag": "",
-    "teams": [],
-    "requestor": "",
+    "teams": [
+      "Tech"
+    ],
+    "requestor": "Nuno Simaria",
     "vendor": "",
     "markets": [],
     "participants": "",
