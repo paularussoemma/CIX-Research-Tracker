@@ -809,9 +809,9 @@
     "fieldworkStart": "",
     "fieldworkEnd": "",
     "researchType": [],
-    "status": "Requested",
+    "status": "Scoping",
     "deliveryDate": "",
-    "cost": "",
+    "cost": "13752",
     "poc": [],
     "category": [],
     "id": "CIX-2026-027"
