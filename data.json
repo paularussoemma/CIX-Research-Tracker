@@ -736,5 +736,36 @@
     ],
     "category": [],
     "id": "CIX-2026-024"
+  },
+  {
+    "name": "Advocacy Quantitative Discovery",
+    "project": "From Satisfaction to Advocacy",
+    "ptag": "P2",
+    "teams": [
+      "Marketing"
+    ],
+    "requestor": "Fatjon Meçi",
+    "vendor": "UserTesting",
+    "markets": [
+      "FR",
+      "UK",
+      "DE",
+      "IN",
+      "MX"
+    ],
+    "participants": "1500",
+    "fieldworkStart": "2026-08",
+    "fieldworkEnd": "2026-09",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Scoping",
+    "deliveryDate": "2026-08-31",
+    "cost": "13752",
+    "poc": [
+      "Joana"
+    ],
+    "category": [],
+    "id": "CIX-2026-025"
   }
 ]
