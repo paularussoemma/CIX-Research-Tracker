@@ -589,5 +589,24 @@
       "Mattress"
     ],
     "id": "CIX-2026-019"
+  },
+  {
+    "name": "Annual UserTesting subscription",
+    "project": "",
+    "ptag": "",
+    "teams": [],
+    "requestor": "",
+    "vendor": "",
+    "markets": [],
+    "participants": "",
+    "fieldworkStart": "",
+    "fieldworkEnd": "",
+    "researchType": [],
+    "status": "Requested",
+    "deliveryDate": "",
+    "cost": "87000",
+    "poc": [],
+    "category": [],
+    "id": "CIX-2026-020"
   }
 ]
