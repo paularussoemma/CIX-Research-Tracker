@@ -794,26 +794,5 @@
     ],
     "category": [],
     "id": "CIX-2026-026"
-  },
-  {
-    "name": "Services Quantitative Discovery",
-    "project": "Premium Services",
-    "ptag": "P2",
-    "teams": [
-      "Ops"
-    ],
-    "requestor": "Stefan Hofer",
-    "vendor": "UserTesting",
-    "markets": [],
-    "participants": "",
-    "fieldworkStart": "",
-    "fieldworkEnd": "",
-    "researchType": [],
-    "status": "Scoping",
-    "deliveryDate": "",
-    "cost": "13752",
-    "poc": [],
-    "category": [],
-    "id": "CIX-2026-027"
   }
 ]
