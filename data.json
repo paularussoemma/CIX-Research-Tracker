@@ -610,5 +610,37 @@
     "poc": [],
     "category": [],
     "id": "CIX-2026-020"
+  },
+  {
+    "name": "Bed Linen Qualitative Discovery",
+    "project": "Grow Bed Linen Category",
+    "ptag": "",
+    "teams": [
+      "Category Management"
+    ],
+    "requestor": "Emilie Brault",
+    "vendor": "UserTesting",
+    "markets": [
+      "ES",
+      "FR",
+      "UK",
+      "DE"
+    ],
+    "participants": "40",
+    "fieldworkStart": "2026-07",
+    "fieldworkEnd": "2026-08",
+    "researchType": [
+      "Interview"
+    ],
+    "status": "Fieldwork",
+    "deliveryDate": "2026-08-07",
+    "cost": "13751.64",
+    "poc": [
+      "Paula"
+    ],
+    "category": [
+      "Bed Linen"
+    ],
+    "id": "CIX-2026-021"
   }
 ]
