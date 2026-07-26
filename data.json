@@ -675,5 +675,37 @@
       "Bed"
     ],
     "id": "CIX-2026-022"
+  },
+  {
+    "name": "Bed Linen Quantitative Discovery",
+    "project": "Grow Bed Linen Category",
+    "ptag": "",
+    "teams": [
+      "Category Management"
+    ],
+    "requestor": "Emilie Brault",
+    "vendor": "SAGO",
+    "markets": [
+      "ES",
+      "FR",
+      "UK",
+      "DE"
+    ],
+    "participants": "2000",
+    "fieldworkStart": "2026-08",
+    "fieldworkEnd": "2026-09",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Scoping",
+    "deliveryDate": "2026-08-31",
+    "cost": "8950",
+    "poc": [
+      "Paula"
+    ],
+    "category": [
+      "Bed Linen"
+    ],
+    "id": "CIX-2026-023"
   }
 ]
