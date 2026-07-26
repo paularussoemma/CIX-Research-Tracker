@@ -707,5 +707,34 @@
       "Bed Linen"
     ],
     "id": "CIX-2026-023"
+  },
+  {
+    "name": "Advocacy Qualitative Discovery",
+    "project": "From Satisfaction to Advocacy",
+    "ptag": "P2",
+    "teams": [
+      "Marketing"
+    ],
+    "requestor": "Fatjon Meçi",
+    "vendor": "",
+    "markets": [
+      "FR",
+      "UK",
+      "DE"
+    ],
+    "participants": "18",
+    "fieldworkStart": "2026-07",
+    "fieldworkEnd": "2026-08",
+    "researchType": [
+      "Interview"
+    ],
+    "status": "Fieldwork",
+    "deliveryDate": "2026-08-14",
+    "cost": "300",
+    "poc": [
+      "Joana"
+    ],
+    "category": [],
+    "id": "CIX-2026-024"
   }
 ]
