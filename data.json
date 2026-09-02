@@ -859,5 +859,38 @@
     ],
     "category": [],
     "id": "CIX-2026-028"
+  },
+  {
+    "name": "Black Friday TVCs Test",
+    "project": "Black Friday",
+    "ptag": "",
+    "teams": [
+      "B&CX",
+      "Brand",
+      "Creative"
+    ],
+    "requestor": "Ingrid Fray",
+    "vendor": "UserTesting",
+    "markets": [
+      "FR",
+      "UK",
+      "DE",
+      "NL",
+      "MX"
+    ],
+    "participants": "150",
+    "fieldworkStart": "2026-09",
+    "fieldworkEnd": "2026-09",
+    "researchType": [
+      "Unmoderated test"
+    ],
+    "status": "Fieldwork",
+    "deliveryDate": "2026-09-10",
+    "cost": "",
+    "poc": [
+      "Paula"
+    ],
+    "category": [],
+    "id": "CIX-2026-029"
   }
 ]
