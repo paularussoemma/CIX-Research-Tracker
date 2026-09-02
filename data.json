@@ -825,5 +825,39 @@
       "Bed"
     ],
     "id": "CIX-2026-025"
+  },
+  {
+    "name": "Services Quantitative Discovery",
+    "project": "Premium Services",
+    "ptag": "P2",
+    "teams": [
+      "Tech",
+      "Ops"
+    ],
+    "requestor": "Stefan Hofer",
+    "vendor": "Conjointly",
+    "markets": [
+      "FR",
+      "UK",
+      "DE",
+      "JP",
+      "MX",
+      "BR"
+    ],
+    "participants": "1800",
+    "fieldworkStart": "2026-09",
+    "fieldworkEnd": "2026-09",
+    "researchType": [
+      "Survey",
+      "MaxDiff"
+    ],
+    "status": "Scoping",
+    "deliveryDate": "2026-09-18",
+    "cost": "",
+    "poc": [
+      "Egon"
+    ],
+    "category": [],
+    "id": "CIX-2026-028"
   }
 ]
