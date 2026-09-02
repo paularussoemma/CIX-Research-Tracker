@@ -570,7 +570,7 @@
     "teams": [
       "Category Management"
     ],
-    "requestor": "Christoph Krauß",
+    "requestor": "Christoph KrauÃ",
     "vendor": "SAGO",
     "markets": [],
     "participants": "450",
@@ -715,7 +715,7 @@
     "teams": [
       "Marketing"
     ],
-    "requestor": "Fatjon Meçi",
+    "requestor": "Fatjon MeÃ§i",
     "vendor": "",
     "markets": [
       "FR",
@@ -744,38 +744,7 @@
     "teams": [
       "Marketing"
     ],
-    "requestor": "Fatjon Meçi",
-    "vendor": "UserTesting",
-    "markets": [
-      "FR",
-      "UK",
-      "DE",
-      "IN",
-      "MX"
-    ],
-    "participants": "1500",
-    "fieldworkStart": "2026-08",
-    "fieldworkEnd": "2026-09",
-    "researchType": [
-      "Survey"
-    ],
-    "status": "Scoping",
-    "deliveryDate": "2026-08-31",
-    "cost": "13752",
-    "poc": [
-      "Joana"
-    ],
-    "category": [],
-    "id": "CIX-2026-025"
-  },
-  {
-    "name": "Advocacy Quantitative Discovery",
-    "project": "From Satisfaction to Advocacy",
-    "ptag": "P2",
-    "teams": [
-      "Marketing"
-    ],
-    "requestor": "Fatjon Meçi",
+    "requestor": "Fatjon MeÃ§i",
     "vendor": "SAGO",
     "markets": [
       "JP"
