@@ -788,5 +788,42 @@
     ],
     "category": [],
     "id": "CIX-2026-027"
+  },
+  {
+    "name": "Beds Qualntitative Discovery",
+    "project": "Grow Beds Category",
+    "ptag": "",
+    "teams": [
+      "Category Management"
+    ],
+    "requestor": "Emilie Brault",
+    "vendor": "SAGO",
+    "markets": [
+      "ES",
+      "FR",
+      "UK",
+      "DE",
+      "NL",
+      "PH",
+      "JP",
+      "MX",
+      "BR"
+    ],
+    "participants": "4000",
+    "fieldworkStart": "2026-08",
+    "fieldworkEnd": "2026-09",
+    "researchType": [
+      "Survey"
+    ],
+    "status": "Fieldwork",
+    "deliveryDate": "2026-09-18",
+    "cost": "",
+    "poc": [
+      "Paula"
+    ],
+    "category": [
+      "Bed"
+    ],
+    "id": "CIX-2026-025"
   }
 ]
