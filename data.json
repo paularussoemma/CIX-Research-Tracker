@@ -570,7 +570,7 @@
     "teams": [
       "Category Management"
     ],
-    "requestor": "Christoph KrauÃ",
+    "requestor": "Christoph KrauÃÂ",
     "vendor": "SAGO",
     "markets": [],
     "participants": "450",
@@ -715,7 +715,7 @@
     "teams": [
       "Marketing"
     ],
-    "requestor": "Fatjon MeÃ§i",
+    "requestor": "Fatjon MeÃÂ§i",
     "vendor": "",
     "markets": [
       "FR",
@@ -744,10 +744,15 @@
     "teams": [
       "Marketing"
     ],
-    "requestor": "Fatjon MeÃ§i",
+    "requestor": "Fatjon Meçi",
     "vendor": "SAGO",
     "markets": [
-      "JP"
+      "FR",
+      "UK",
+      "DE",
+      "IN",
+      "JP",
+      "MX"
     ],
     "participants": "300",
     "fieldworkStart": "2026-08",
@@ -755,9 +760,9 @@
     "researchType": [
       "Survey"
     ],
-    "status": "Analysis",
+    "status": "Delivered",
     "deliveryDate": "2026-08-31",
-    "cost": "",
+    "cost": "14320",
     "poc": [
       "Joana"
     ],
