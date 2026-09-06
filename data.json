@@ -884,10 +884,9 @@
       "FR",
       "UK",
       "DE",
-      "NL",
       "MX"
     ],
-    "participants": "150",
+    "participants": "85",
     "fieldworkStart": "2026-09",
     "fieldworkEnd": "2026-09",
     "researchType": [
@@ -895,7 +894,7 @@
     ],
     "status": "Fieldwork",
     "deliveryDate": "2026-09-10",
-    "cost": "",
+    "cost": "11700",
     "poc": [
       "Paula"
     ],
