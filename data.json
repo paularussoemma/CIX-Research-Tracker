@@ -715,7 +715,7 @@
     "teams": [
       "Marketing"
     ],
-    "requestor": "Fatjon MeÃÂ§i",
+    "requestor": "Fatjon Meçi",
     "vendor": "",
     "markets": [
       "FR",
@@ -734,7 +734,11 @@
     "poc": [
       "Joana"
     ],
-    "category": [],
+    "category": [
+      "Mattress",
+      "Pillow",
+      "Bed"
+    ],
     "id": "CIX-2026-024"
   },
   {
