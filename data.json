@@ -965,5 +965,39 @@
     ],
     "category": [],
     "id": "CIX-2026-031"
+  },
+  {
+    "name": "Reimagined - Purchase Intent Test",
+    "project": "Original Reimagined",
+    "ptag": "P2",
+    "teams": [
+      "Category Management"
+    ],
+    "requestor": "Emilie Brault",
+    "vendor": "Kantar",
+    "markets": [
+      "FR",
+      "UK",
+      "DE",
+      "AU",
+      "MX"
+    ],
+    "participants": "",
+    "fieldworkStart": "2026-10",
+    "fieldworkEnd": "2026-11",
+    "researchType": [
+      "Unmoderated test",
+      "Pricing"
+    ],
+    "status": "Scoping",
+    "deliveryDate": "2026-11-30",
+    "cost": "39000",
+    "poc": [
+      "Sofija"
+    ],
+    "category": [
+      "Mattress"
+    ],
+    "id": "CIX-2026-032"
   }
 ]
