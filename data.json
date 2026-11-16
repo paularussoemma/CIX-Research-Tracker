@@ -934,5 +934,36 @@
       "Mattress"
     ],
     "id": "CIX-2026-030"
+  },
+  {
+    "name": "Super Delighted Study",
+    "project": "From Satisfaction to Advocacy",
+    "ptag": "P2",
+    "teams": [
+      "B&CX"
+    ],
+    "requestor": "Fatjon Meçi",
+    "vendor": "With Company",
+    "markets": [
+      "PT",
+      "DE"
+    ],
+    "participants": "28",
+    "fieldworkStart": "2026-11",
+    "fieldworkEnd": "2027-01",
+    "researchType": [
+      "Interview",
+      "In-person test",
+      "Field study"
+    ],
+    "status": "Fieldwork",
+    "deliveryDate": "2027-01-31",
+    "cost": "101167",
+    "poc": [
+      "Paula",
+      "Joana"
+    ],
+    "category": [],
+    "id": "CIX-2026-031"
   }
 ]
