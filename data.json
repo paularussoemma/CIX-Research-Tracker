@@ -570,7 +570,7 @@
     "teams": [
       "Category Management"
     ],
-    "requestor": "Christoph KrauÃÂ",
+    "requestor": "Christoph KrauÃÂÃÂ",
     "vendor": "SAGO",
     "markets": [],
     "participants": "450",
@@ -715,7 +715,7 @@
     "teams": [
       "Marketing"
     ],
-    "requestor": "Fatjon MeÃ§i",
+    "requestor": "Fatjon MeÃÂ§i",
     "vendor": "",
     "markets": [
       "FR",
@@ -748,7 +748,7 @@
     "teams": [
       "Marketing"
     ],
-    "requestor": "Fatjon MeÃ§i",
+    "requestor": "Fatjon MeÃÂ§i",
     "vendor": "SAGO",
     "markets": [
       "FR",
@@ -900,5 +900,39 @@
     ],
     "category": [],
     "id": "CIX-2026-029"
+  },
+  {
+    "name": "Consumer Playbook - Profiles & Journey",
+    "project": "Consumer Playbook",
+    "ptag": "",
+    "teams": [
+      "B&CX"
+    ],
+    "requestor": "Paula Russo",
+    "vendor": "Listen Labs",
+    "markets": [
+      "FR",
+      "UK",
+      "DE",
+      "IR",
+      "JP"
+    ],
+    "participants": "301",
+    "fieldworkStart": "2026-10",
+    "fieldworkEnd": "2026-10",
+    "researchType": [
+      "Survey",
+      "Interview"
+    ],
+    "status": "Delivered",
+    "deliveryDate": "2026-11-02",
+    "cost": "15990",
+    "poc": [
+      "Joana"
+    ],
+    "category": [
+      "Mattress"
+    ],
+    "id": "CIX-2026-030"
   }
 ]
